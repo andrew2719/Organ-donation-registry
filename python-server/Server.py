@@ -5,12 +5,10 @@ from pydantic import BaseModel
 from web3 import Web3
 import json
 
-
 from dotenv import load_dotenv
 
 # Load environment variables from the .env file
 load_dotenv()
-
 
 app = FastAPI()
 
@@ -44,6 +42,10 @@ class DonorRegistration(BaseModel):
     organ_to_donate: str
 
 class MatchApproval(BaseModel):
+    patient_id: int
+    donor_id: int
+
+class TransactionConfirmation(BaseModel):
     patient_id: int
     donor_id: int
 
@@ -114,6 +116,40 @@ async def approve_match(approval: MatchApproval):
         })
         tx_hash = sign_and_send_transaction(transaction)
         return {"tx_hash": tx_hash, "message": "Match approved successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/view-match")
+async def view_match(patient_id: int):
+    try:
+        match_info = contract.functions.viewMatch(patient_id).call()
+        is_matched = match_info[0]
+        donor_id = match_info[1]
+        patient_hospital_approved = match_info[2]
+        donor_hospital_approved = match_info[3]
+        return {
+            "is_matched": is_matched,
+            "donor_id": donor_id,
+            "patient_hospital_approved": patient_hospital_approved,
+            "donor_hospital_approved": donor_hospital_approved
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/confirm-transaction")
+async def confirm_transaction(confirmation: TransactionConfirmation):
+    try:
+        transaction = contract.functions.confirmTransactionComplete(
+            confirmation.patient_id,
+            confirmation.donor_id
+        ).build_transaction({
+            'from': PUBLIC_ADDRESS,
+            'nonce': w3.eth.get_transaction_count(PUBLIC_ADDRESS),
+            'gas': 200000,
+            'gasPrice': w3.eth.gas_price
+        })
+        tx_hash = sign_and_send_transaction(transaction)
+        return {"tx_hash": tx_hash, "message": "Transaction confirmed successfully"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
