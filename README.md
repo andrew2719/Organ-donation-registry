@@ -1,5 +1,7 @@
 # Organ Donation Registry DApp
 
+**This projects serves as a prototype, invalid requests like invalid ids, invalid confirmational executions need to be handled in the server side. Everything is working as intended in smartcontract like handling that invalidness.**
+
 An Ethereum-based decentralized application (DApp) for managing organ donations and transplants, allowing hospitals to register patients and donors, find matches based on organ requirements, approve matches, and confirm organ donation transactions.
 
 ## Contract address : 0x7A9453E92D95c8C89DB6C7E5a4707AdFAaF5587C
@@ -47,7 +49,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/andrew2719/Organ-donation-registry.git
-cd organ-donation-registry
+cd Organ-donation-registry
 ```
 
 Install the required Python packages:
