@@ -1,6 +1,6 @@
 # Organ Donation Registry DApp
 
-**This projects serves as a prototype, invalid requests like invalid ids, invalid confirmational executions need to be handled in the server side. Everything is working as intended in smartcontract like handling that invalidness.**
+**This project serves as a prototype. Invalid requests, such as invalid IDs and invalid confirmation executions, need to be handled on the server side. The smart contract handles these invalid cases as intended.**
 
 An Ethereum-based decentralized application (DApp) for managing organ donations and transplants, allowing hospitals to register patients and donors, find matches based on organ requirements, approve matches, and confirm organ donation transactions.
 
@@ -199,9 +199,19 @@ streamlit run frontend.py
 
 **Disclaimer**: This project is for educational purposes. Ensure compliance with all legal and ethical guidelines when dealing with sensitive information like medical records and private keys.
 
-# License
+## License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.  
+You are free to:
+- Share: Copy and redistribute the material in any medium or format.
+- Adapt: Remix, transform, and build upon the material.
+
+**Under the following terms:**
+- **Attribution**: You must give appropriate credit and indicate if changes were made.
+- **NonCommercial**: You may not use the material for commercial purposes.
+
+For more details, visit [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
 
 ---
 
