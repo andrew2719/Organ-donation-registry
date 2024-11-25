@@ -16,7 +16,7 @@ contract OrganDonationRegistry {
     }
     
     struct Donor {
-        string name;
+        string name;    
         uint256 donorId;
         string organToDonate;
         address hospitalAddress;

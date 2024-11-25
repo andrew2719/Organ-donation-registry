@@ -1,1 +1,12 @@
 name: organ_donation
+plugins:
+  - name: solidity
+  - name: infura
+  - name: etherscan
+
+default_ecosystem: ethereum
+
+ethereum:
+  default_network: sepolia
+  sepolia:
+    default_provider: infura
